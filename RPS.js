@@ -80,8 +80,7 @@ function playRound(pPick)
     return roundWinner;
 }
 
-function game()
-{
+
     let score = [0,0];
     let tempScore = [0,0];
     let roundWinnerMain = '';
@@ -95,6 +94,7 @@ function game()
         score[0] += tempScore[0];
         score[1] += tempScore[1];
         console.log(score);
+        dispScore();
            
     }
     playerChoice2.addEventListener('click', pickEquals2);
@@ -104,6 +104,8 @@ function game()
         score[0] += tempScore[0];
         score[1] += tempScore[1];
         console.log(score);
+        dispScore();
+        
     }
     playerChoice3.addEventListener('click', pickEquals3);
     function pickEquals3(){
@@ -112,13 +114,17 @@ function game()
         score[0] += tempScore[0];
         score[1] += tempScore[1];
         console.log(score);
+        dispScore();
     }
     console.log(playerChoice1);
-    //const scoreDisplay = document.querySelector('.scoreDisplay');
-    //scoreDisplay.textContent = `Current score is: Player ${playerScore} Computer ${compScore}.`;
+
+    function dispScore()
+    {
+    const scoreDisplay = document.querySelector('.scoreDisplay');
+    scoreDisplay.textContent = `Current score is: Player ${score[0]} Computer ${score[1]}.`;
+    }
 
 
-}   
     function scoreAdd(roundWinner)
     {
         let returnScore = [0,0];
@@ -137,4 +143,3 @@ function game()
     
     }
 
-game();
