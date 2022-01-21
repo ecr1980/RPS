@@ -30,38 +30,13 @@ function computerPlay()
     return compPlay; 
 }
 
-// non strict comparisons do not negate capitalizations. In other words......
-//  rock == Rock will be false.
 
-//This is for the player to choose.
-
-/*function playerSelection(){
-    const playerChoice1 = document.getElementById('button1');
-    const playerChoice2 = document.getElementById('button2');
-    const playerChoice3 = document.getElementById('button3');
-    const playerChoice ='Rock';
-    playerChoice1.addEventListener('click', pickEquals0);
-    function pickEquals0(){
-        alert('0!')
-    }
-    playerChoice2.addEventListener('click', pickEquals1);
-    function pickEquals1(){
-        alert('1!')
-    }
-    playerChoice3.addEventListener('click', pickEquals2);
-    function pickEquals2(){
-        alert('2!')
-    }
-    console.log(playerChoice1);
-    return playerChoice;
-} */
 
 function playRound(pPick)
 {
     let compPick;
     let roundWinner = '';
     const scoreMessage = document.querySelector('.scoreMessage');
-    //scoreDisplay.textContent = `Current score is: Player ${score[0]} Computer ${score[1]}.`;
 
       compPick = computerPlay();
 
@@ -118,19 +93,31 @@ function playRound(pPick)
         console.log(score);
         dispScore();
     }
-    console.log(playerChoice1);
 
     function dispScore()
     {
     const scoreDisplay = document.querySelector('.scoreDisplay');
     scoreDisplay.textContent = `Current score is: Player ${score[0]} Computer ${score[1]}.`;
+    if (score[0] == 5 || score[1] == 5)
+    {
+        if(score[0]==5)
+        {
+            alert('Player won!');
+            location.reload();
+        }
+        else if (score[1] == 5)
+        {
+            alert('The computer won!');
+            location.reload();
+        }
+    }
     }
 
 
     function scoreAdd(roundWinner)
     {
         let returnScore = [0,0];
-        //const scoreDisplay = document.querySelector('.scoreDisplay');
+
         if(roundWinner == 'player')
         {
             returnScore[0] = 1;
