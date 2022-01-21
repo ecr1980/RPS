@@ -60,21 +60,23 @@ function playRound(pPick)
 {
     let compPick;
     let roundWinner = '';
+    const scoreMessage = document.querySelector('.scoreMessage');
+    //scoreDisplay.textContent = `Current score is: Player ${score[0]} Computer ${score[1]}.`;
 
       compPick = computerPlay();
 
     if (pPick == compPick)
     {
-        console.log('You both picked ' + compPick + '.');
+        scoreMessage.textContent = `You both picked ${pPick}.`;
         
     }
     else if((pPick == 'Rock' && compPick == 'Paper') || (pPick == 'Paper' && compPick == 'Scissors') || (pPick == 'Scissors' && compPick == 'Rock'))
     {
-        console.log('You lose. ' + compPick + ' beats ' + pPick + '.');
+        scoreMessage.textContent = `You lose. ${compPick} beats ${pPick}.`;
         roundWinner = 'comp';
     }
     else{
-        console.log('You win! ' + pPick + ' beats ' + compPick +'!');
+        scoreMessage.textContent = `You win! ${pPick} beats ${compPick}!`;
         roundWinner = 'player';
     }
     return roundWinner;
