@@ -2,4 +2,4 @@
 Rock Paper Scissors
 
 
-This is the initial Rock Paper Scissors excersize from The Odin Project.
+This is the secondary version of Rock Paper Scissors from The Odin Project. Gameplay has been moved from the console to the browser.
