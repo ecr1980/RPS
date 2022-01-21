@@ -35,70 +35,106 @@ function computerPlay()
 
 //This is for the player to choose.
 
-function playerSelection(){
-    let playerChoice = prompt("Please choose. Rock, Paper, or Scissors.");
-    let playerChoice2 = playerChoice.toLowerCase();
-    playerChoice = playerChoice2[0].toUpperCase() + playerChoice2.substring(1);
-    return playerChoice;
-}
-
-function playRound()
-{
-    let playerPick;
-    let compPick;
-    let score = [0,0];
-
-    while (playerPick != 'Rock' && playerPick != 'Paper' && playerPick != "Scissors")
-    {
-        playerPick = playerSelection();
+/*function playerSelection(){
+    const playerChoice1 = document.getElementById('button1');
+    const playerChoice2 = document.getElementById('button2');
+    const playerChoice3 = document.getElementById('button3');
+    const playerChoice ='Rock';
+    playerChoice1.addEventListener('click', pickEquals0);
+    function pickEquals0(){
+        alert('0!')
     }
+    playerChoice2.addEventListener('click', pickEquals1);
+    function pickEquals1(){
+        alert('1!')
+    }
+    playerChoice3.addEventListener('click', pickEquals2);
+    function pickEquals2(){
+        alert('2!')
+    }
+    console.log(playerChoice1);
+    return playerChoice;
+} */
 
-    compPick = computerPlay();
+function playRound(pPick)
+{
+    let compPick;
+    let roundWinner = '';
 
-    if (playerPick == compPick)
+      compPick = computerPlay();
+
+    if (pPick == compPick)
     {
         console.log('You both picked ' + compPick + '.');
         
     }
-    else if((playerPick == 'Rock' && compPick == 'Paper') || (playerPick == 'Paper' && compPick == 'Scissors') || (playerPick == 'Scissors' && compPick == 'Rock'))
+    else if((pPick == 'Rock' && compPick == 'Paper') || (pPick == 'Paper' && compPick == 'Scissors') || (pPick == 'Scissors' && compPick == 'Rock'))
     {
-        console.log('You lose. ' + compPick + ' beats ' + playerPick + '.');
-        score[1] = 1;
+        console.log('You lose. ' + compPick + ' beats ' + pPick + '.');
+        roundWinner = 'comp';
     }
     else{
-        console.log('You win! ' + playerPick + ' beats ' + compPick +'!');
-        score[0] = 1;
+        console.log('You win! ' + pPick + ' beats ' + compPick +'!');
+        roundWinner = 'player';
     }
-
-    return score;
+    return roundWinner;
 }
 
 function game()
 {
-    let playerScore = 0;
-    let compScore = 0;
-    let combinedScore = [0,0];
+    let score = [0,0];
+    let tempScore = [0,0];
+    let roundWinnerMain = '';
+    const playerChoice1 = document.getElementById('button1');
+    const playerChoice2 = document.getElementById('button2');
+    const playerChoice3 = document.getElementById('button3');
+    playerChoice1.addEventListener('click', pickEquals1);
+    function pickEquals1(){
+        roundWinnerMain = playRound('Rock');
+        tempScore = scoreAdd(roundWinnerMain);
+        score[0] += tempScore[0];
+        score[1] += tempScore[1];
+        console.log(score);
+           
+    }
+    playerChoice2.addEventListener('click', pickEquals2);
+    function pickEquals2(){
+        roundWinnerMain = playRound('Paper');
+        tempScore = scoreAdd(roundWinnerMain);
+        score[0] += tempScore[0];
+        score[1] += tempScore[1];
+        console.log(score);
+    }
+    playerChoice3.addEventListener('click', pickEquals3);
+    function pickEquals3(){
+        roundWinnerMain = playRound('Scissors');
+        tempScore = scoreAdd(roundWinnerMain);
+        score[0] += tempScore[0];
+        score[1] += tempScore[1];
+        console.log(score);
+    }
+    console.log(playerChoice1);
+    //const scoreDisplay = document.querySelector('.scoreDisplay');
+    //scoreDisplay.textContent = `Current score is: Player ${playerScore} Computer ${compScore}.`;
 
-    for(let i = 0; i<5; i++)
+
+}   
+    function scoreAdd(roundWinner)
     {
-        console.log('Round ' + (+i+1) +'!');
-        console.log('Current score is Player ' + playerScore + ' and Computer ' + compScore +'.');
-        combinedScore = playRound();
-        playerScore += combinedScore[0];
-        compScore += combinedScore[1];
+        let returnScore = [0,0];
+        //const scoreDisplay = document.querySelector('.scoreDisplay');
+        if(roundWinner == 'player')
+        {
+            returnScore[0] = 1;
+        }
+        else if(roundWinner == 'comp')
+        {
+            returnScore[1] = 1;
+        }
+        
+
+        return returnScore;
+    
     }
 
-    if(playerScore > compScore)
-    {
-        console.log('You Win!');
-    }
-    else if(compScore > playerScore)
-    {
-        console.log('Computer Wins!');
-    }
-    else{
-        console.log('Tie game.');
-    }
-
-    console.log('Final Score, Player ' + playerScore + '. Computer ' + compScore + '.');
-}
+game();
